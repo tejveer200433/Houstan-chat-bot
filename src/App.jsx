@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import Admin from './Admin.jsx';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
@@ -660,7 +661,7 @@ export default function App() {
         body: JSON.stringify({
           name: leadName.trim(),
           phone: leadPhone.trim(),
-          email,
+          email: leadEmail.trim(),
           regarding: leadRegarding,
         }),
       });
@@ -686,6 +687,17 @@ export default function App() {
       setLeadSubmitting(false);
     }
   }, [BACKEND_URL, leadEmail, leadName, leadPhone, leadRegarding, resetLeadForm]);
+
+  // ── Routing: Check URL to determine which page to show
+  // Supports both /admin (if backend routes properly) and /#/admin (hash-based)
+  const isAdminPage = window.location.pathname === '/admin' || 
+                      window.location.pathname.startsWith('/admin/') ||
+                      window.location.hash === '#/admin' ||
+                      window.location.hash.startsWith('#/admin/');
+
+  if (isAdminPage) {
+    return <Admin />;
+  }
 
   // ── Render: Chat UI
   return (
@@ -730,6 +742,14 @@ export default function App() {
                 {isSpeaking && (
                   <span className="voice-dot" aria-hidden="true" />
                 )}
+              </button>
+              <button
+                className="admin-toggle"
+                onClick={() => { window.location.href = '/#/admin'; }}
+                aria-label="Open admin panel"
+                title="Admin Dashboard"
+              >
+                ⚙️
               </button>
             </div>
           </div>

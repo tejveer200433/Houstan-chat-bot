@@ -240,6 +240,35 @@ body {
   outline-offset: 2px;
 }
 
+.admin-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background var(--transition), border-color var(--transition),
+              transform var(--transition), box-shadow var(--transition);
+  color: var(--text-muted);
+  background: var(--bg-bot-bubble);
+  margin-left: 8px;
+}
+
+.admin-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(29, 158, 117, 0.12);
+  border-color: var(--accent);
+}
+
+.admin-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .speaker-icon {
   width: 20px;
   height: 20px;

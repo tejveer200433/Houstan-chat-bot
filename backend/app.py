@@ -74,6 +74,48 @@ def list_leads():
     return jsonify({'success': True, 'leads': leads})
 
 
+@app.route('/api/leads/<int:lead_id>', methods=['PUT'])
+def update_lead(lead_id):
+    payload = request.get_json(silent=True) or {}
+    name = (payload.get('name') or '').strip()
+    phone = (payload.get('phone') or '').strip()
+    email = (payload.get('email') or '').strip()
+    regarding = (payload.get('regarding') or '').strip()
+
+    if not name or not phone or not regarding:
+        return jsonify({'success': False, 'message': 'Missing required lead fields.'}), 400
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        'UPDATE leads SET name = ?, phone = ?, email = ?, regarding = ? WHERE id = ?',
+        (name, phone, email, regarding, lead_id)
+    )
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'success': False, 'message': 'Lead not found.'}), 404
+
+    conn.close()
+    return jsonify({'success': True, 'message': 'Lead updated'})
+
+
+@app.route('/api/leads/<int:lead_id>', methods=['DELETE'])
+def delete_lead(lead_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM leads WHERE id = ?', (lead_id,))
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({'success': False, 'message': 'Lead not found.'}), 404
+
+    conn.close()
+    return jsonify({'success': True, 'message': 'Lead deleted'})
+
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=5000)

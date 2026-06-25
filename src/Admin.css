@@ -1,0 +1,331 @@
+.admin-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a1f12 0%, #0f2818 100%);
+  padding: 32px 20px;
+  color: #e0e7ff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.back-btn {
+  background: rgba(29, 158, 117, 0.1);
+  border: 1px solid rgba(29, 158, 117, 0.3);
+  color: #1D9E75;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(29, 158, 117, 0.2);
+  border-color: rgba(29, 158, 117, 0.5);
+}
+
+.admin-error {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #fca5a5;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(29, 158, 117, 0.2);
+  border-radius: 8px;
+  color: #e0e7ff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(29, 158, 117, 0.5);
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.1);
+}
+
+.search-input::placeholder {
+  color: rgba(224, 231, 255, 0.5);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.export-btn {
+  background: rgba(29, 158, 117, 0.15);
+  border: 1px solid rgba(29, 158, 117, 0.3);
+  color: #1D9E75;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.export-btn:hover {
+  background: rgba(29, 158, 117, 0.25);
+  border-color: rgba(29, 158, 117, 0.5);
+  box-shadow: 0 4px 12px rgba(29, 158, 117, 0.15);
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: rgba(224, 231, 255, 0.6);
+  font-size: 16px;
+}
+
+.table-wrapper {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: rgba(11, 34, 24, 0.6);
+  border: 1px solid rgba(29, 158, 117, 0.1);
+}
+
+.leads-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.leads-table thead {
+  background: rgba(29, 158, 117, 0.1);
+  border-bottom: 1px solid rgba(29, 158, 117, 0.2);
+}
+
+.leads-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #1D9E75;
+  white-space: nowrap;
+}
+
+.leads-table tbody tr {
+  border-bottom: 1px solid rgba(29, 158, 117, 0.08);
+  transition: background 0.2s ease;
+}
+
+.leads-table tbody tr:hover {
+  background: rgba(29, 158, 117, 0.05);
+}
+
+.leads-table tbody tr.editing {
+  background: rgba(29, 158, 117, 0.1);
+}
+
+.leads-table td {
+  padding: 12px 16px;
+  color: #e0e7ff;
+}
+
+.cell-id {
+  color: rgba(224, 231, 255, 0.6);
+  font-weight: 500;
+  width: 50px;
+}
+
+.cell-timestamp {
+  font-size: 13px;
+  color: rgba(224, 231, 255, 0.5);
+  white-space: nowrap;
+}
+
+.cell-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.edit-input,
+.edit-select {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(29, 158, 117, 0.08);
+  border: 1px solid rgba(29, 158, 117, 0.3);
+  border-radius: 4px;
+  color: #e0e7ff;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.edit-input:focus,
+.edit-select:focus {
+  background: rgba(29, 158, 117, 0.15);
+  border-color: rgba(29, 158, 117, 0.6);
+  box-shadow: 0 0 0 2px rgba(29, 158, 117, 0.15);
+}
+
+.edit-input::placeholder {
+  color: rgba(224, 231, 255, 0.3);
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn,
+.cancel-btn {
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  background: rgba(29, 158, 117, 0.15);
+  color: #1D9E75;
+  border: 1px solid rgba(29, 158, 117, 0.3);
+}
+
+.edit-btn:hover {
+  background: rgba(29, 158, 117, 0.25);
+  border-color: rgba(29, 158, 117, 0.5);
+}
+
+.delete-btn {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.delete-btn:hover {
+  background: rgba(248, 113, 113, 0.25);
+  border-color: rgba(248, 113, 113, 0.5);
+}
+
+.save-btn {
+  background: rgba(29, 158, 117, 0.25);
+  color: #1D9E75;
+  border: 1px solid rgba(29, 158, 117, 0.5);
+}
+
+.save-btn:hover {
+  background: rgba(29, 158, 117, 0.35);
+  border-color: rgba(29, 158, 117, 0.7);
+}
+
+.cancel-btn {
+  background: rgba(107, 114, 128, 0.15);
+  color: rgba(224, 231, 255, 0.7);
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.cancel-btn:hover {
+  background: rgba(107, 114, 128, 0.25);
+  border-color: rgba(107, 114, 128, 0.5);
+}
+
+.admin-footer {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(224, 231, 255, 0.5);
+  font-size: 13px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 20px 12px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .admin-header h1 {
+    font-size: 22px;
+  }
+
+  .admin-controls {
+    flex-direction: column;
+  }
+
+  .search-wrapper {
+    min-width: auto;
+  }
+
+  .leads-table {
+    font-size: 12px;
+  }
+
+  .leads-table th,
+  .leads-table td {
+    padding: 10px 12px;
+  }
+
+  .cell-actions {
+    flex-direction: column;
+  }
+
+  .edit-btn,
+  .delete-btn,
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}

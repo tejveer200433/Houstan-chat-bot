@@ -1,9 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import './Admin.css';
 
 export default function Admin() {
   const [leads, setLeads] = useState([]);
-  const [filteredLeads, setFilteredLeads] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editFormData, setEditFormData] = useState({});
@@ -20,7 +19,6 @@ export default function Admin() {
         const data = await res.json();
         if (data.success) {
           setLeads(data.leads);
-          setFilteredLeads(data.leads);
         }
         setError('');
       } catch (err) {
@@ -33,15 +31,13 @@ export default function Admin() {
     fetchLeads();
   }, [BACKEND_URL]);
 
-  // Filter leads by search query
-  useEffect(() => {
+  const filteredLeads = useMemo(() => {
     const query = searchQuery.toLowerCase();
-    const filtered = leads.filter(lead =>
+    return leads.filter(lead =>
       lead.name.toLowerCase().includes(query) ||
       lead.phone.includes(query) ||
       (lead.email && lead.email.toLowerCase().includes(query))
     );
-    setFilteredLeads(filtered);
   }, [searchQuery, leads]);
 
   const handleEditClick = useCallback((lead) => {
@@ -243,8 +239,8 @@ export default function Admin() {
                         onChange={e => handleEditChange('regarding', e.target.value)}
                         className="edit-select"
                       >
-                        <option>Product Inquiry</option>
-                        <option>Pricing</option>
+                        <option>Service Inquiry</option>
+                        <option>Project Quote</option>
                         <option>Technical Support</option>
                         <option>General Query</option>
                       </select>

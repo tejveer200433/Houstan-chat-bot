@@ -11,7 +11,7 @@ BASE = Path(__file__).resolve().parent
 DB_PATH = BASE / 'leads.db'
 
 SAMPLES = [
-    {"name": "Alice Johnson", "phone": "+919876543210", "email": "alice@example.com", "regarding": "Product Inquiry"},
+    {"name": "Alice Johnson", "phone": "+919876543210", "email": "alice@example.com", "regarding": "Service Inquiry"},
     {"name": "Bob Kumar", "phone": "+919812345678", "email": "bob@example.com", "regarding": "Pricing"},
     {"name": "Chitra Singh", "phone": "+919900112233", "email": "chitra@example.com", "regarding": "Technical Support"},
 ]

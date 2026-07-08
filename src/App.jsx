@@ -534,9 +534,7 @@ export default function App() {
   const [leadEmailError, setLeadEmailError] = useState('');
   const [leadError, setLeadError] = useState('');
   const [leadSubmitting, setLeadSubmitting] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+  const [isOpen, setIsOpen] = useState(true);
 
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -704,7 +702,7 @@ export default function App() {
 
     setLeadSubmitting(true);
     try {
-      const res = await fetch(`${BACKEND_URL}/api/leads`, {
+      const res = await fetch("https://houstan-chat-bot.onrender.com/api/leads", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -735,7 +733,7 @@ export default function App() {
     } finally {
       setLeadSubmitting(false);
     }
-  }, [BACKEND_URL, leadEmail, leadName, leadPhone, leadRegarding, resetLeadForm]);
+  }, [leadEmail, leadName, leadPhone, leadRegarding, resetLeadForm]);
 
   // ── Routing: Check URL to determine which page to show
   // Supports both /admin (if backend routes properly) and /#/admin (hash-based)

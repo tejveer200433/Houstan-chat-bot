@@ -8,14 +8,14 @@ export default function Admin() {
   const [editFormData, setEditFormData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://houstan-chat-bot.onrender.com';
 
   // Fetch all leads
   useEffect(() => {
     const fetchLeads = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${BACKEND_URL}/api/leads`);
+        const res = await fetch("https://houstan-chat-bot.onrender.com/api/leads");
         const data = await res.json();
         if (data.success) {
           setLeads(data.leads);
@@ -29,7 +29,7 @@ export default function Admin() {
     };
 
     fetchLeads();
-  }, [BACKEND_URL]);
+  }, []);
 
   const filteredLeads = useMemo(() => {
     const query = searchQuery.toLowerCase();

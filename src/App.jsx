@@ -552,7 +552,12 @@ export default function App() {
     el.style.height = `${el.scrollHeight}px`;
   }, [inputText]);
 
-  // NOTE: welcome message will be shown when user opens the chat (user gesture)
+  // Show the welcome message when the chat is already open on first load.
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      setMessages([makeWelcome()]);
+    }
+  }, [isOpen, messages.length]);
 
   // ── Call Groq API
   const callGroq = useCallback(async (history) => {

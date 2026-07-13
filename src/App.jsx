@@ -1,5 +1,14 @@
+import {
+  Bot,
+  Send,
+  Settings,
+  X,
+  Phone,
+  Circle,
+} from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Admin from './Admin.jsx';
+
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
@@ -594,6 +603,67 @@ export default function App() {
   const sendMessage = useCallback(async (text) => {
     const trimmed = text.trim();
     if (!trimmed || isTyping) return;
+    const lower = trimmed.toLowerCase();
+
+const salesKeywords = [
+  "sales",
+  "sale",
+  "contact",
+  "contact us",
+  "quotation",
+  "quote",
+  "pricing",
+  "price",
+  "cost",
+  "buy",
+  "purchase",
+  "expert",
+  "talk to expert",
+  "talk to sales",
+  "whatsapp",
+  "phone",
+  "mobile",
+  "call",
+  "enquiry",
+  "inquiry",
+  "support"
+];
+
+if (salesKeywords.some(keyword => lower.includes(keyword))) {
+
+  const userMsg = {
+    id: `user-${Date.now()}`,
+    role: 'user',
+    text: trimmed,
+    time: formatTime(new Date()),
+  };
+
+  const botMsg = {
+    id: `bot-${Date.now()}`,
+    role: 'bot',
+    text: `📞 Our Sales Team is ready to help you.
+
+📞 Sales: +91 99991 26881
+📞 Alternate Sales: +91 XXXXX XXXXX
+
+📧 Email: sk@houstonsystem.com
+
+💬 WhatsApp:
+https://wa.me/919999126881
+
+🌐 Website:
+https://www.houstonsystems.in
+
+We usually respond within a few minutes during business hours.
+
+Would you like me to connect you with one of our experts?`,
+    time: formatTime(new Date()),
+  };
+
+  setMessages(prev => [...prev, userMsg, botMsg]);
+  setInputText("");
+  return;
+}
 
     if (trimmed.length > USER_MESSAGE_LIMIT) {
       setError(`Please keep your message under ${USER_MESSAGE_LIMIT} characters.`);
@@ -767,10 +837,10 @@ export default function App() {
           </div>
 
           <div className="header-info">
-            <div className="header-name">Support Assistant</div>
+            <div className="header-name">Houstan </div>
             <div className="header-meta">
               <div className="header-status"><span>●</span> Online</div>
-              <div className="model-badge" title="Model in use">{MODEL_LABEL}</div>
+              <div className="model-badge" ></div>
               <button
                 className="close-chat"
                 aria-label="Close chat"
@@ -865,14 +935,14 @@ export default function App() {
             />
           </div>
           <button
-            id="send-btn"
-            className="send-btn"
-            onClick={() => sendMessage(inputText)}
-            disabled={!inputText.trim() || isTyping}
-            aria-label="Send message"
-          >
-            <SendIcon />
-          </button>
+className="send-btn"
+onClick={()=>sendMessage(inputText)}
+disabled={!inputText.trim()||isTyping}
+>
+
+<Send size={18}/>
+
+</button>
         </div>
 
         <div className="lead-action-bar">
@@ -899,7 +969,7 @@ export default function App() {
             }
           }}
         >
-          💬
+          <Bot size={28}/>
         </button>
       )}
 
